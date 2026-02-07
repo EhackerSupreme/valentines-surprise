@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title> Surprise 🌹</title>
+    <title>Surprise 💖</title>
 
     <style>
         body {
@@ -51,7 +51,6 @@
             to { opacity: 1; transform: scale(1); }
         }
 
-        /* Falling rose animation */
         .rose {
             position: fixed;
             top: -50px;
@@ -75,7 +74,7 @@
 
 <body>
 
-    <h1>🌹 Surprise 🌹</h1>
+    <h1>💝 Surprise 💝</h1>
     <h2>Will you accept this gift? 🎁</h2>
 
     <div id="buttons">
@@ -91,7 +90,6 @@
         const noBtn = document.getElementById("noBtn");
         const message = document.getElementById("message");
 
-        // No button runs away
         noBtn.addEventListener("mouseover", () => {
             const x = Math.random() * (window.innerWidth - 150);
             const y = Math.random() * (window.innerHeight - 100);
@@ -101,30 +99,13 @@
             noBtn.style.top = y + "px";
         });
 
-        // Show message when Yes clicked
         function yesClicked() {
             message.style.display = "block";
         }
 
-        // Falling roses
         function createRose() {
             const rose = document.createElement("div");
             rose.classList.add("rose");
             rose.innerHTML = "🌹";
 
-            rose.style.left = Math.random() * window.innerWidth + "px";
-            rose.style.animationDuration = (3 + Math.random() * 3) + "s";
-
-            document.body.appendChild(rose);
-
-            setTimeout(() => {
-                rose.remove();
-            }, 6000);
-        }
-
-        setInterval(createRose, 500);
-    </script>
-
-</body>
-</html>
-
+            rose.style.left = Math.random
