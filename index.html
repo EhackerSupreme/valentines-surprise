@@ -1,50 +1,32 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Valentine Surprise 💖</title>
-
-    <style>
-        body {
-            background: linear-gradient(to right, #ff758c, #ff7eb3);
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding-top: 120px;
-            color: white;
-        }
-
-        button {
-            background-color: white;
-            color: #ff4d6d;
-            border: none;
-            padding: 15px 30px;
-            font-size: 18px;
-            border-radius: 30px;
-            cursor: pointer;
-        }
-
-        #message {
-            display: none;
-            margin-top: 30px;
-            font-size: 26px;
-        }
-    </style>
-
-    <script>
-        function showMessage() {
-            document.getElementById("message").style.display = "block";
-        }
-    </script>
-</head>
-
 <body>
 
     <h1>💝 Valentine Surprise 💝</h1>
+    <h2>Will you accept this gift? 🎁</h2>
 
-    <button onclick="showMessage()">Click Here 💌</button>
-
-    <div id="message">
-        ❤️ Happy Valentine’s Day, My Dear Sweet Kittu ❤️
+    <div style="margin-top:40px;">
+        <button onclick="yesClicked()">Yes 💖</button>
+        <button id="noBtn">No ❌</button>
     </div>
 
+    <div id="message" style="display:none; margin-top:40px; font-size:26px;">
+        ❤️ Happy Valentine’s Day, my dear sweet husband ❤️
+    </div>
+
+    <script>
+        const noBtn = document.getElementById("noBtn");
+
+        noBtn.addEventListener("mouseover", () => {
+            const x = Math.random() * (window.innerWidth - 150);
+            const y = Math.random() * (window.innerHeight - 100);
+
+            noBtn.style.position = "absolute";
+            noBtn.style.left = x + "px";
+            noBtn.style.top = y + "px";
+        });
+
+        function yesClicked() {
+            document.getElementById("message").style.display = "block";
+        }
+    </script>
+
 </body>
-</html>
