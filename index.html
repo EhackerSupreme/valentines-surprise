@@ -1,111 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Surprise 💖</title>
+<meta charset="UTF-8">
+<title>Surprise 💖</title>
 
-    <style>
-        body {
-            margin: 0;
-            height: 100vh;
-            background: linear-gradient(to right, #ff758c, #ff7eb3);
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding-top: 100px;
-            color: white;
-            overflow: hidden;
-        }
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        background: #ff8fb1;
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        overflow: hidden;
+    }
 
-        h1 {
-            font-size: 40px;
-        }
+    h1 {
+        font-size: 42px;
+        margin-bottom: 10px;
+    }
 
-        h2 {
-            margin-top: 20px;
-        }
+    h2 {
+        font-size: 22px;
+        margin-bottom: 30px;
+    }
 
-        #buttons {
-            margin-top: 40px;
-        }
+    #buttons {
+        position: relative;
+    }
 
-        button {
-            background-color: white;
-            color: #ff4d6d;
-            border: none;
-            padding: 15px 30px;
-            font-size: 18px;
-            border-radius: 30px;
-            cursor: pointer;
-            margin: 10px;
-        }
+    button {
+        background: white;
+        color: #ff4d6d;
+        border: none;
+        padding: 15px 35px;
+        font-size: 18px;
+        border-radius: 40px;
+        cursor: pointer;
+        margin: 10px;
+    }
 
-        #message {
-            display: none;
-            margin-top: 50px;
-            font-size: 30px;
-            animation: fadeIn 1s ease-in-out;
-        }
+    #message {
+        display: none;
+        font-size: 30px;
+        margin-top: 40px;
+        animation: fadeIn 1s ease-in-out;
+    }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
-        }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: scale(0.9); }
+        to { opacity: 1; transform: scale(1); }
+    }
 
-        .rose {
-            position: fixed;
-            top: -50px;
-            font-size: 30px;
-            animation: fall linear infinite;
-            pointer-events: none;
-        }
+    .flower {
+        position: fixed;
+        top: -40px;
+        font-size: 28px;
+        animation: fall linear infinite;
+        pointer-events: none;
+    }
 
-        @keyframes fall {
-            from {
-                transform: translateY(-50px);
-                opacity: 1;
-            }
-            to {
-                transform: translateY(110vh);
-                opacity: 0;
-            }
+    @keyframes fall {
+        to {
+            transform: translateY(110vh);
+            opacity: 0;
         }
-    </style>
+    }
+</style>
 </head>
 
 <body>
 
-    <h1>💝 Surprise 💝</h1>
-    <h2>Will you accept this gift? 🎁</h2>
+<h1>💝 Surprise 💝</h1>
+<h2>Will you accept this gift? 🎁</h2>
 
-    <div id="buttons">
-        <button onclick="yesClicked()">Yes 💖</button>
-        <button id="noBtn">No ❌</button>
-    </div>
+<div id="buttons">
+    <button id="yesBtn">Yes 💖</button>
+    <button id="noBtn">No ❌</button>
+</div>
 
-    <div id="message">
-        🌹 Happy Rose Day 🌹
-    </div>
+<div id="message">
+    🌹 Happy Rose Day 🌹
+</div>
 
-    <script>
-        const noBtn = document.getElementById("noBtn");
-        const message = document.getElementById("message");
+<script>
+document.addEventListener("DOMContentLoaded", () => {
 
-        noBtn.addEventListener("mouseover", () => {
-            const x = Math.random() * (window.innerWidth - 150);
-            const y = Math.random() * (window.innerHeight - 100);
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn = document.getElementById("noBtn");
+    const message = document.getElementById("message");
 
-            noBtn.style.position = "absolute";
-            noBtn.style.left = x + "px";
-            noBtn.style.top = y + "px";
-        });
+    // YES button
+    yesBtn.addEventListener("click", () => {
+        message.style.display = "block";
+    });
 
-        function yesClicked() {
-            message.style.display = "block";
-        }
+    // NO button runs away
+    noBtn.addEventListener("mouseenter", () => {
+        const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+        const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
 
-        function createRose() {
-            const rose = document.createElement("div");
-            rose.classList.add("rose");
-            rose.innerHTML = "🌹";
+        noBtn.style.position = "fixed";
+        noBtn.style.left = x + "px";
+        noBtn.style.top = y + "px";
+    });
 
-            rose.style.left = Math.random
+    // Falling flowers
+    function createFlower() {
+        const flower = document.createElement("div");
+        flower.className = "flower";
+        flower.innerHTML = "🌹";
+
+        flower.style.left = Math.random() * window.innerWidth + "px";
+        flower.style.animationDuration = (3 + Math.random() * 3) + "s";
+
+        document.body.appendChild(flower);
+
+        setTimeout(() => {
+            flower.remove();
+        }, 6000);
+    }
+
+    setInterval(createFlower, 400);
+
+});
+</script>
+
+</body>
+</html>
